@@ -1,25 +1,27 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-//현재 페이지 리스트
-const pageList = ["main", "focusmanager"]
-
+// 현재 페이지 리스트
+const pageList = ["main", "focusmanager"];
 
 module.exports = {
     mode: "development",
-    entry: getConfigByList(pageList).entry, // 엔트리 포인트
+    entry: getConfigByList(pageList).entry,
     output: {
-        filename: '[name]/bundle.js', // 결과물 파일
-        path: path.resolve(__dirname, 'dist'), // 결과물 디렉토리
+        publicPath: '/kutil/',
+        filename: '[name]/bundle.js',
+        path: path.resolve(__dirname),
     },
     resolve: {
-        extensions: ['.ts', '.js'], // .ts 확장자를 인식하도록 설정
+        extensions: ['.ts', '.js'],
     },
     module: {
         rules: [
             {
-                test: /\.css$/, // CSS 파일을 대상으로 함
-                use: ['style-loader', 'css-loader'], // 적용할 로더
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
                 test: /\.ts$/,
@@ -28,39 +30,41 @@ module.exports = {
             }
         ],
     },
-    plugins: getConfigByList(pageList).plugins,
+    plugins: [
+        ...getConfigByList(pageList).plugins,
+        new MiniCssExtractPlugin({
+            filename: '[name]/styles.css',
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'public', to: 'kutil/public' } // 경로를 'kutil/public'로 수정
+            ],
+        }),
+    ],
     devServer: {
-        static: path.join(__dirname), // 서버의 루트 경로
-        compress: true, // gzip 압축 활성화
-        port: 8000 // 포트 번호
+        static: path.join(__dirname),
+        compress: true,
+        port: 8000
     }
 };
 
-
-/**
- *
- * @param {string} name
- * @returns {HtmlWebpackPlugin}
- */
 function getHtmlWebpackPlugin(name) {
     return new HtmlWebpackPlugin({
         filename: `${name}/index.html`,
         template: `./src/${name}/index.html`,
         chunks: [name],
+        PUBLIC: '/kutil' // publicPath 값을 전달
     })
 }
 
-/**
- * @param {string[]} pageList
- */
 function getConfigByList(pageList) {
-    const entry = {}
-    const plugins = []
+    const entry = {};
+    const plugins = [];
 
     pageList.forEach(page => {
-        entry[page] = `./src/${page}/index.ts`
-        plugins.push(getHtmlWebpackPlugin(page))
-    })
+        entry[page] = `./src/${page}/index.ts`;
+        plugins.push(getHtmlWebpackPlugin(page)); // 수정된 함수 호출
+    });
 
-    return {entry, plugins}
+    return { entry, plugins };
 }

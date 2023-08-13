@@ -1,19 +1,20 @@
 {
   "name": "kutils",
   "version": "1.0.0",
-  "homepage": "https://boipqiod.github.io/kutil/build",
   "scripts": {
     "tsc": "tsc",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "path": "^0.12.7",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "webpack": "^5.88.2",
