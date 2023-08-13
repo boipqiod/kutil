@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "strict": true
+  },
+  "include": [
+    "./src/focusmanager/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
