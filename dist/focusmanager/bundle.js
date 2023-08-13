@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/main/index.ts":
-/*!***************************!*\
-  !*** ./src/main/index.ts ***!
-  \***************************/
+/***/ "./src/focusmanager/index.ts":
+/*!***********************************!*\
+  !*** ./src/focusmanager/index.ts ***!
+  \***********************************/
 /***/ (() => {
 
-eval("\n\n\n//# sourceURL=webpack://sutils/./src/main/index.ts?");
+eval("\nwindow.onload = function () {\n};\n\n\n//# sourceURL=webpack://kutils/./src/focusmanager/index.ts?");
 
 /***/ })
 
@@ -27,7 +27,7 @@ eval("\n\n\n//# sourceURL=webpack://sutils/./src/main/index.ts?");
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/main/index.ts"]();
+/******/ 	__webpack_modules__["./src/focusmanager/index.ts"]();
 /******/ 	
 /******/ })()
 ;

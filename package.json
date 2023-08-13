@@ -1,11 +1,11 @@
 {
   "name": "kutils",
   "version": "1.0.0",
-  "homepage": "https://boipqiod.github.io/kutil",
+  "homepage": "https://boipqiod.github.io/kutil/build",
   "scripts": {
     "tsc": "tsc",
     "build": "webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "path": "^0.12.7",

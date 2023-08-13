@@ -10,7 +10,7 @@ module.exports = {
     entry: getConfigByList(pageList).entry, // 엔트리 포인트
     output: {
         filename: '[name]/bundle.js', // 결과물 파일
-        path: path.resolve(__dirname), // 결과물 디렉토리
+        path: path.resolve(__dirname, 'dist'), // 결과물 디렉토리
     },
     resolve: {
         extensions: ['.ts', '.js'], // .ts 확장자를 인식하도록 설정
