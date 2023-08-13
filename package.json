@@ -1,6 +1,7 @@
 {
   "name": "sutils",
   "version": "1.0.0",
+  "homepage": "https://boipqiod.github.io/kutil",
   "scripts": {
     "tsc": "tsc",
     "build": "webpack",
