@@ -1,0 +1,43 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 5vh;
+
+    height: 100vh;
+}
+
+h1{
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+img{
+    width: 85px;
+    height: 85px;
+}
+
+.btn-start{
+
+}
+
+@media (max-width: 800px) {
+    h1{
+        font-size: 40px;
+    }
+    img{
+        width: 45px;
+        height: 45px;
+    }
+
+    h2{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .content{
+        padding: 5vh 20px 0 20px;
+        width: 100vw;
+    }
+}

@@ -1,16 +1,40 @@
-Html Webpack Plugin:
-<pre>
-  ReferenceError: PUBLIC is not defined
-  
-  - loader.js:4 eval
-    [index.html?.]/[html-webpack-plugin]/lib/loader.js:4:11
-  
-  - loader.js:13 module.exports
-    [index.html?.]/[html-webpack-plugin]/lib/loader.js:13:3
-  
-  - index.js:499 
-    [kutils]/[html-webpack-plugin]/index.js:499:16
-  
-  - async Promise.all
-  
-</pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/kutil/public/assets/logo.png"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta charset="UTF-8">
+    <title>FocusManager - 집중력 관리 서비스</title>
+    <link rel="stylesheet" href="/kutil/public/styles/common.css">
+    <link rel="stylesheet" href="/kutil/public/styles/focusmanager.css">
+<script defer src="/kutil/focusmanager/bundle.js"></script></head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1 class="flex ac">
+            <img src="/kutil/public/assets/focusmanager/fm_logo.png" alt="logo">
+            Focus Manager
+        </h1>
+        <h2>집중 시간과 휴식 시간을 분리해주는 효율적인 집중력 관리 서비스</h2>
+        <div>
+            <span>집중 시간</span>
+            <br>
+            <label><input type="number">시간</label><br/>
+            <label><input type="number">분</label>
+        </div>
+        <hr>
+        <div>
+            <span>휴식 시간</span>
+            <br>
+            <label><input type="number">시간</label><br/>
+            <label><input type="number">분</label>
+        </div>
+        <hr>
+        <button class="btn-start">시작하기</button>
+    </div>
+</div>
+</body>
+</html>

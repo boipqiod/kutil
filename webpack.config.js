@@ -53,7 +53,10 @@ function getHtmlWebpackPlugin(name) {
         filename: `${name}/index.html`,
         template: `./src/${name}/index.html`,
         chunks: [name],
-        PUBLIC: '/kutil' // publicPath 값을 전달
+        templateParameters:{
+            PUBLIC: '/kutil' // publicPath 값을 전달
+
+        }
     })
 }
 
