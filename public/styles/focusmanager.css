@@ -18,6 +18,10 @@ img{
     height: 85px;
 }
 
+.btn-start{
+
+}
+
 @media (max-width: 800px) {
     h1{
         font-size: 40px;
