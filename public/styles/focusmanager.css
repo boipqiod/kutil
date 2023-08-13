@@ -11,3 +11,27 @@ h1{
     margin-bottom: 10px;
 }
 
+img{
+    width: 85px;
+    height: 85px;
+}
+
+@media (max-width: 800px) {
+    h1{
+        font-size: 40px;
+    }
+    img{
+        width: 45px;
+        height: 45px;
+    }
+
+    h2{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .content{
+        padding: 100px 20px 0 20px;
+        width: 100vw;
+    }
+}

@@ -4,83 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f461a794-c376-47b0-ab2a-cfa796d43e00" name="변경" comment="TEST. Github Pages 테스트">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7cf2ff22-bc2e-4d38-a83a-9b474cb6b7db" name="변경" comment="TEST. 깃허브 주소 테스트">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/focusmanager.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/focusmanager.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/focusmanager/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/focusmanager/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript JSX File" />
-        <option value="package.json" />
-        <option value="tsconfig.json" />
-        <option value="JavaScript File" />
-        <option value="HTML File" />
-        <option value="TypeScript File" />
-        <option value="CSS File" />
-      </list>
-    </option>
-  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2SVeAdORjehifasgic2i8VR6OCn" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/gongsangheon/dev/personal/kutils",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/Users/gongsangheon/dev/personal/sutils/node_modules/react-scripts",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/gongsangheon/dev/personal/kutils/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+    "ts.external.directory.path": "/Users/gongsangheon/dev/personal/kutils/node_modules/typescript/lib"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/assets" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager" selected="npm.build">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -91,69 +42,26 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="tsc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="tsc" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.tsc" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="f461a794-c376-47b0-ab2a-cfa796d43e00" name="변경" comment="" />
-      <created>1689236032394</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1689236032394</updated>
-      <workItem from="1689236036282" duration="6131000" />
-      <workItem from="1691838680885" duration="13179000" />
-      <workItem from="1691934863839" duration="654000" />
-    </task>
-    <task id="LOCAL-00001" summary="INIT. 프로젝트 시작">
+    <task id="LOCAL-00001" summary="TEST. 깃허브 주소 테스트">
       <option name="closed" value="true" />
-      <created>1691934981394</created>
+      <created>1691935697743</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1691934981394</updated>
+      <updated>1691935697743</updated>
     </task>
-    <task id="LOCAL-00002" summary="INIT. 프로젝트 시작">
-      <option name="closed" value="true" />
-      <created>1691935150813</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1691935150813</updated>
-    </task>
-    <task id="LOCAL-00003" summary="TEST. Github Pages 테스트">
-      <option name="closed" value="true" />
-      <created>1691935346642</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1691935346642</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="INIT. 프로젝트 시작" />
-    <MESSAGE value="TEST. Github Pages 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="TEST. Github Pages 테스트" />
+    <MESSAGE value="TEST. 깃허브 주소 테스트" />
+    <option name="LAST_COMMIT_MESSAGE" value="TEST. 깃허브 주소 테스트" />
   </component>
 </project>
