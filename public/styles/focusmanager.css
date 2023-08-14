@@ -108,6 +108,27 @@ img{
     background-color: #9B5EFF; /* 체크박스가 선택됐을 때 라벨의 배경색을 변경합니다. */
 }
 
+
+.focusmanager-info{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.focusmanager-info img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+
+    margin: 0 auto 30px auto;
+}
+
 @media (max-width: 800px) {
     h1{
         font-size: 40px;
@@ -121,4 +142,9 @@ img{
         padding: 5vh 20px 0 20px;
         width: 100vw;
     }
+
+    .focusmanager-info img {
+        margin: 0 auto 100px auto;
+    }
+
 }

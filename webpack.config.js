@@ -34,11 +34,11 @@ module.exports = {
     },
     plugins: [
         ...getConfigByList(pageList).plugins,
-        new InjectManifest({
-            swSrc: './src/serviceWorker.ts',
-            swDest: 'serviceWorker.js',
-            exclude: [/\.map$/, /manifest\.json$/],
-        }),
+        // new InjectManifest({
+        //     swSrc: './src/serviceWorker.ts',
+        //     swDest: 'serviceWorker.js',
+        //     exclude: [/\.map$/, /manifest\.json$/],
+        // }),
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'public', to: 'kutil/public'}

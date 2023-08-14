@@ -1,11 +1,12 @@
 import {Controller} from "./Controller";
 import {Utils} from "../common/Utils";
+import {Audio, soundList} from "../common/Audio";
 
 const BASE_URL = "/kuitl/"
 
 window.onload = async () =>{
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../serviceWorker.js').then(() => {
+        navigator.serviceWorker.register('/serviceWorker.js').then(() => {
             console.log('Service Worker Registered');
         });
     }
@@ -22,6 +23,7 @@ window.onload = async () =>{
             console.error(`${err.name}, ${err.message}`);
         }
     }
+    window.resizeTo(375, 667);
 
 
     new Controller().init()
