@@ -1,7 +1,6 @@
 import { precacheAndRoute } from 'workbox-precaching';
 declare const self: ServiceWorkerGlobalScope;
 
-self.__WB_MANIFEST;
 
 // 캐시 이름과 캐싱할 파일 목록
 
@@ -13,9 +12,8 @@ const urlsToCache: string[] = [
 ];
 // Workbox가 주입하는 미리 캐시할 파일 목록
 declare const __WB_MANIFEST: { url: string, revision: string }[];
-
-// 미리 캐시할 파일 목록을 사용하여 라우팅 설정
 precacheAndRoute(__WB_MANIFEST);
+self.__WB_MANIFEST;
 
 // 설치 이벤트에서 파일 캐싱
 // self.addEventListener('install', (event: any) => {
