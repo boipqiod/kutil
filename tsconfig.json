@@ -5,7 +5,7 @@
     "strict": true
   },
   "include": [
-    "./src/focusmanager/*.ts"
+    "./src/**/*",
   ],
   "exclude": ["node_modules"]
 }

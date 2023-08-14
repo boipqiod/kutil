@@ -2,14 +2,15 @@
   "name": "kutils",
   "version": "1.0.0",
   "scripts": {
-    "tsc": "tsc",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack && webpack-dev-server",
+    "dev": "webpack-dev-server & webpack --watch"
   },
   "dependencies": {
     "copy-webpack-plugin": "^11.0.0",
     "path": "^0.12.7",
-    "typescript": "^5.1.6"
+    "terser-webpack-plugin": "^5.3.9",
+    "workbox-webpack-plugin": "^7.0.0"
   },
   "devDependencies": {
     "css-loader": "^6.8.1",
@@ -17,6 +18,7 @@
     "mini-css-extract-plugin": "^2.7.6",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"

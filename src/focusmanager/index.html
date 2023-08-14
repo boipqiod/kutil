@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="<%= PUBLIC %>/public/assets/logo.png"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="icon" href="<%= PUBLIC %>/public/assets/focusmanager/fm_icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
@@ -10,30 +10,53 @@
     <title>FocusManager - 집중력 관리 서비스</title>
     <link rel="stylesheet" href="<%= PUBLIC %>/public/styles/common.css">
     <link rel="stylesheet" href="<%= PUBLIC %>/public/styles/focusmanager.css">
+    <link rel="manifest" href="./manifest.json">
+
 </head>
 <body>
 <div class="container">
-    <div class="content">
-        <h1 class="flex ac">
+    <div class="loading" id="loading"></div>
+    <div id="setting" class="content">
+        <div class="focusmanager-title">
+                <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_logo.png" alt="logo">
+        </div>
+        <div class="focusmanager-content flex column jc ac">
+            <div>
+                <p class="content-text">
+                    집중 시간<br>
+                    <label><input class="input" id="f_time" type="number" min="1">분</label>
+                </p>
+            </div>
+            <div>
+                <p class="content-text">
+                    휴식 시간<br>
+                    <label><input class="input" id="r_time" type="number" min="1">분</label>
+                </p>
+            </div>
+            <di>
+                <label for="auto" class="flex row ac">
+                    <input id="auto" hidden class="checkbox" type="checkbox">
+                    <span class="checkbox_label"></span> 자동 진행
+                </label>
+            </di>
+        </div>
+        <div class="focusmanager-button flex column ac">
+            <button id="btn-start" class="button">시작하기</button>
+            <button id="btn-info" class="button none">설명 보기</button>
+        </div>
+    </div>
+    <div id="timer" class="content hide">
+        <div class="focusmanager-title">
             <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_logo.png" alt="logo">
-            Focus Manager
-        </h1>
-        <h2>집중 시간과 휴식 시간을 분리해주는 효율적인 집중력 관리 서비스</h2>
-        <div>
-            <span>집중 시간</span>
-            <br>
-            <label><input type="number">시간</label><br/>
-            <label><input type="number">분</label>
         </div>
-        <hr>
-        <div>
-            <span>휴식 시간</span>
-            <br>
-            <label><input type="number">시간</label><br/>
-            <label><input type="number">분</label>
+        <div class="focusmanager-content flex column jc ac">
+            <p id="display-timer" class="display-timer"></p>
         </div>
-        <hr>
-        <button class="btn-start">시작하기</button>
+        <div class="focusmanager-button flex column ac">
+            <button id="btn-focus-start" class="hide">집중 시작하기</button>
+            <button id="btn-relax-start" class="hide">휴식 시작하기</button>
+            <button id="btn-exit">종료하기</button>
+        </div>
     </div>
 </div>
 </body>

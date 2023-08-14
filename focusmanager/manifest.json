@@ -1,0 +1,15 @@
+{
+  "name": "FocusManager",
+  "short_name": "FM",
+  "icons": [
+    {
+      "src": "/kutil/public/assets/focusmanager/fm_icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/focusmanager",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}
