@@ -3,11 +3,12 @@
 <head>
     <link rel="icon" href="<%= PUBLIC %>/public/assets/focusmanager/fm_icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="FocusManager helps you manage concentration and relaxation periods for peak performance. Customize your focus and relaxation times, track progress, and enhance productivity. Join today!">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
     <meta charset="UTF-8">
-    <title>FocusManager: Master Your Focus and Relaxation for Peak Performance</title>
+    <title>FocusManager: Master Your Time, Enhance Your Productivity</title>
     <link rel="stylesheet" href="<%= PUBLIC %>/public/styles/common.css">
     <link rel="stylesheet" href="<%= PUBLIC %>/public/styles/focusmanager.css">
     <link rel="manifest" href="./manifest.json">
@@ -16,12 +17,12 @@
 <body>
 <div class="container">
     <div class="focusmanager-info hide" id="info">
-        <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_info.png" alt="info">
+        <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_info.png" alt="FocusManager info">
     </div>
     <div class="loading" id="loading"></div>
     <div id="setting" class="content">
         <div class="focusmanager-title">
-                <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_logo.png" alt="logo">
+                <img src="<%= PUBLIC %>/public/assets/focusmanager/fm_logo.png" alt="FocusManager logo">
         </div>
         <div class="focusmanager-content flex column jc ac">
             <div>
@@ -36,12 +37,12 @@
                     <label><input class="input" id="r_time" type="number" min="1" value="10">min</label>
                 </p>
             </div>
-            <di>
+            <div>
                 <label for="auto" class="flex row ac">
                     <input id="auto" hidden class="checkbox" type="checkbox">
                     <span class="checkbox_label"></span> auto play
                 </label>
-            </di>
+            </div>
         </div>
         <div class="focusmanager-button flex column ac">
             <button id="btn-start" class="button">Start</button>
