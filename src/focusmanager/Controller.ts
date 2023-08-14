@@ -91,7 +91,7 @@ export class Controller{
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
         if (this.isFocus) {
-            this.focusTime = this.originFocusTime - elapsed * 100;
+            this.focusTime = this.originFocusTime - elapsed;
             this.updateTimeDisplay(this.focusTime);
             if (this.focusTime <= 0) {
                 clearInterval(this.timer);
@@ -105,7 +105,7 @@ export class Controller{
                 }
             }
         } else {
-            this.relaxTime = this.originRelaxTime - elapsed * 100;
+            this.relaxTime = this.originRelaxTime - elapsed;
             this.updateTimeDisplay(this.relaxTime);
             if (this.relaxTime <= 0) {
                 clearInterval(this.timer);
