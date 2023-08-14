@@ -3,8 +3,10 @@ import {getById} from "../common/domUtils";
 export class Controller{
     private static shared: Controller
 
-    focusEle: HTMLInputElement //집중 시간 엘리멘트
+    focusEle: HTMLInputElement
     relaxEle: HTMLInputElement
+
+    autoEle: HTMLInputElement
 
     settingEle: HTMLDivElement
     timerEle: HTMLDivElement
@@ -23,6 +25,8 @@ export class Controller{
         this.focusEle = getById<HTMLInputElement>('f_time')
         this.relaxEle = getById<HTMLInputElement>('r_time')
 
+        this.autoEle = getById<HTMLInputElement>('auto')
+
         this.settingEle = getById<HTMLInputElement>('setting')
         this.timerEle = getById<HTMLInputElement>('timer')
 
@@ -39,6 +43,7 @@ export class Controller{
     init = () =>{
         //스타트 버튼 액션 이벤트 리스너 등
         getById<HTMLButtonElement>('btn-start').addEventListener('click', this.startAction)
+        getById<HTMLButtonElement>('btn-end').addEventListener('click', this.end)
         getById<HTMLButtonElement>('btn-relax-start').addEventListener('click', this.startRelax);
         getById<HTMLButtonElement>('btn-focus-start').addEventListener('click', this.startFocus);
 
@@ -54,9 +59,7 @@ export class Controller{
             alert("입력 값을 확인해주세요")
             return
         }
-        const isStart = confirm("시작하시겠습니까?")
-
-        if(isStart) this.start()
+        this.start()
     }
 
     /****진행****/
@@ -65,7 +68,7 @@ export class Controller{
         // 시간 저장 (분을 초로 변환)
         this.originFocusTime = this.focusTime = Number(this.focusEle.value) * 60
         this.originRelaxTime = this.relaxTime = Number(this.relaxEle.value) * 60
-        this.updateTimeDisplay(this.originFocusTime)
+        this.updateTimeDisplay(this.focusTime)
 
         //화면 전환
         this.settingEle.classList.add('hide')
@@ -76,50 +79,72 @@ export class Controller{
         this.timer = setInterval(this.timerAction, 500)
     }
 
+    end = () =>{
+        //값 초기화
+        this.timerEle.classList.add('hide')
+        this.settingEle.classList.remove('hide')
+        clearInterval(this.timer)
+    }
+
     // 타이머 액션
     timerAction = () => {
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
         if (this.isFocus) {
-            this.focusTime = this.originFocusTime - elapsed;
+            this.focusTime = this.originFocusTime - elapsed * 100;
             this.updateTimeDisplay(this.focusTime);
             if (this.focusTime <= 0) {
                 clearInterval(this.timer);
-                alert("집중 시간이 끝났습니다!");
-                // 휴식 시작 버튼 표시
-                getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide');
+
+                if(this.autoEle.checked){
+                    this.startRelax()
+                }else{
+                    alert("Focus Completed!");
+                    // 휴식 시작 버튼 표시
+                    getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide');
+                }
             }
         } else {
-            this.relaxTime = this.originRelaxTime - elapsed;
+            this.relaxTime = this.originRelaxTime - elapsed * 100;
             this.updateTimeDisplay(this.relaxTime);
             if (this.relaxTime <= 0) {
                 clearInterval(this.timer);
-                alert("휴식 시간이 끝났습니다!");
-                // 집중 시작 버튼 표시
-                getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
+
+                if(this.autoEle.checked){
+                    this.startFocus()
+                }else{
+                    alert("Relax Completed!");
+                    // 집중 시작 버튼 표시
+                    getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
+                }
             }
         }
     }
 // 시간을 00:00 형식으로 표시
     updateTimeDisplay(timeInSeconds: number) {
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = Math.floor(timeInSeconds % 60);
+        const _timeInSeconds = timeInSeconds <= 0 ? 0 : timeInSeconds
+        const minutes = Math.floor(_timeInSeconds / 60);
+        const seconds = Math.floor(_timeInSeconds % 60);
         getById('display-timer').textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
     // 휴식 시작
     startRelax = () => {
+        this.startTime = Date.now();
         this.isFocus = false;
-        this.relaxTime = this.originRelaxTime;
+        this.relaxTime = Number(this.relaxEle.value) * 60;
         getById<HTMLButtonElement>('btn-relax-start').classList.add('hide');
+        getById<HTMLButtonElement>('display-message').textContent = "Relax"
         this.timer = setInterval(this.timerAction, 500);
     }
 
     // 집중 시작
     startFocus = () => {
+        this.startTime = Date.now();
         this.isFocus = true;
-        this.focusTime = this.originFocusTime;
+        this.focusTime = Number(this.focusEle.value) * 60;
         getById<HTMLButtonElement>('btn-focus-start').classList.add('hide');
+        getById<HTMLButtonElement>('display-message').textContent = "Focus"
         this.timer = setInterval(this.timerAction, 500);
     }
 }

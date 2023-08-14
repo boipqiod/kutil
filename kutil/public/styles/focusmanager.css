@@ -45,6 +45,7 @@ img{
 .focusmanager-content .display-timer{
     font-size: 70px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .focusmanager-button{
@@ -75,6 +76,12 @@ img{
     color: #181818;
 
     font-size: 15px;
+}
+.button.red {
+    outline: none;
+    border: none;
+    background-color: rgb(255, 52, 52);
+
 }
 
 .button:hover{
