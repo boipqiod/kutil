@@ -1,6 +1,6 @@
 {
   "name": "FocusManager",
-  "short_name": "FM",
+  "short_name": "focusmanager",
   "icons": [
     {
       "src": "/kutil/public/assets/focusmanager/fm_icon.png",
