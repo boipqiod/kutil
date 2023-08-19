@@ -12,9 +12,9 @@ module.exports = {
     mode: "production",
     entry: getConfigByList(pageList).entry,
     output: {
-        publicPath: '/kutil/',
+        publicPath: '/kutil/app/',
         filename: '[name]/bundle.js',
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, 'app'),
     },
     resolve: {
         extensions: ['.ts', '.js'],
@@ -34,14 +34,14 @@ module.exports = {
     },
     plugins: [
         ...getConfigByList(pageList).plugins,
-        // new InjectManifest({
-        //     swSrc: './src/serviceWorker.ts',
-        //     swDest: 'serviceWorker.js',
-        //     exclude: [/\.map$/, /manifest\.json$/],
-        // }),
+        new InjectManifest({
+            swSrc: './src/serviceWorker.ts',
+            swDest: 'serviceWorker.js',
+            exclude: [/\.map$/, /manifest\.json$/],
+        }),
         new CopyWebpackPlugin({
             patterns: [
-                {from: 'public', to: 'kutil/public'}
+                {from: 'public', to: '../kutil/public'}
             ],
         }),
     ],
@@ -53,7 +53,7 @@ module.exports = {
                     // 난독화 옵션
                     mangle: true, // 변수 이름을 짧고 의미 없는 것으로 변경
                     compress: {
-                        // drop_console: true, // 콘솔 로그 제거
+                        drop_console: true, // 콘솔 로그 제거
                     },
                 },
             }),

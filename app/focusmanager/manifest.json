@@ -11,5 +11,8 @@
   "start_url": "/kutil/focusmanager",
   "display": "fullscreen",
   "background_color": "#000000",
-  "theme_color": "#000000"
+  "theme_color": "#000000",
+  "permissions": [
+    "background"
+  ]
 }

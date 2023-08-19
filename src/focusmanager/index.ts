@@ -1,15 +1,19 @@
 import {Controller} from "./Controller";
-import {Utils} from "../common/Utils";
-import {Audio, soundList} from "../common/Audio";
+import {Utils} from "../utils/Utils";
+import {Audio, soundList} from "../utils/Audio";
+import {Indicator} from "../utils/Indicator";
 
 const BASE_URL = "/kuitl/"
 
 window.onload = async () =>{
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/serviceWorker.js').then(() => {
+        navigator.serviceWorker.register('../serviceWorker.js').then(() => {
             console.log('Service Worker Registered');
         });
     }
+
+    Indicator.instance.setIndicator()
+
     if ('wakeLock' in navigator) {
         let wakeLock = null;
 
@@ -27,5 +31,5 @@ window.onload = async () =>{
 
 
     new Controller().init()
-    new Utils().completedLoading()
+    // new Utils().completedLoading()
 }
