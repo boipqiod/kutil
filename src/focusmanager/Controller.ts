@@ -110,9 +110,10 @@ export class Controller {
 
     // 타이머 액션
     timerAction = async () => {
-        const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
-        this.runningTime -= elapsed;
+        // 남은 시간 계산
+        this.runningTime = this.isFocus ? this.originFocusTime - Math.floor((Date.now() - this.startTime) / 1000) : this.originRelaxTime - Math.floor((Date.now() - this.startTime) / 1000)
+
         this.updateTimeDisplay(this.runningTime);
         if (this.runningTime <= 0) {
             clearInterval(this.timer)
