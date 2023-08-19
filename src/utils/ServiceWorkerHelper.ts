@@ -3,8 +3,6 @@ export default class ServiceWorkerHelper {
     static messageChannel: MessageChannel = new MessageChannel()
 
     static async registerServiceWorker() {
-        await navigator.serviceWorker.ready
-
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.addEventListener('message', function(event) {
                 console.log('메인 스레드에서 받은 메시지:', event.data);
@@ -21,7 +19,7 @@ export default class ServiceWorkerHelper {
             console.log('Service Worker is not supported by browser.');
         }
 
-
+        await navigator.serviceWorker.ready
         await this.showNotification('hello', { body: 'hello' })
     }
 
