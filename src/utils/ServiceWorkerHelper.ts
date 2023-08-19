@@ -18,16 +18,7 @@ export default class ServiceWorkerHelper {
         } else {
             console.log('Service Worker is not supported by browser.');
         }
-
-        await navigator.serviceWorker.ready
-
-        setTimeout(async ()=>{
-            await this.showNotification('hello', { body: 'hello' })
-        }, 10000)
-
-
     }
-
 
     static async sendMessageToServiceWorker(message: any) {
         navigator.serviceWorker.controller.postMessage({

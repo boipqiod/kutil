@@ -1,6 +1,6 @@
 export class Audio{
     private static shared: Audio
-    private baseUrl = '/kutil/public/assets/sound'
+    private baseUrl = '../../public/assets/sound'
     audioEle: HTMLAudioElement = document.createElement('audio')
 
     constructor() {

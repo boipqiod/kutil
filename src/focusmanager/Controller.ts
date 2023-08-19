@@ -53,13 +53,10 @@ export class Controller {
         getById<HTMLButtonElement>('btn-relax-start').addEventListener('click', this.startRelax);
         getById<HTMLButtonElement>('btn-focus-start').addEventListener('click', this.startFocus);
         getById<HTMLButtonElement>('btn-info').addEventListener('click', this.showInfo);
-        this.infoEle.addEventListener('click',this.closeInfo)
+        this.infoEle.addEventListener('click', this.closeInfo)
     }
     //이벤트 리스너 함수
     startAction = () => {
-
-        ServiceWorkerHelper.sendMessageToServiceWorker("hello").then(r => console.log(r))
-
         if (
             this.focusEle.value === "" ||
             this.relaxEle.value === "" ||
@@ -86,26 +83,29 @@ export class Controller {
 
         // 시작 시간 기록
         this.startTime = Date.now();
-        this.timer = setInterval(this.timerAction, 500)
+        this.timer = setInterval(this.timerAction, 100)
     }
 
     end = () => {
         //값 초기화
         this.timerEle.classList.add('hide')
         this.settingEle.classList.remove('hide')
+        this.isFocus = true
         clearInterval(this.timer)
     }
 
     // 타이머 액션
-    timerAction = async ()  => {
+    timerAction = async () => {
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
         if (this.isFocus) {
             this.focusTime = this.originFocusTime - elapsed;
             this.updateTimeDisplay(this.focusTime);
             if (this.focusTime <= 0) {
-                await new Audio().play(soundList.bell)
                 clearInterval(this.timer);
+
+                ServiceWorkerHelper.showNotification('Focus Time is over!').then()
+                await new Audio().play(soundList.bell)
                 if (this.autoEle.checked) this.startRelax()
                 else getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide');
             }
@@ -113,8 +113,10 @@ export class Controller {
             this.relaxTime = this.originRelaxTime - elapsed;
             this.updateTimeDisplay(this.relaxTime);
             if (this.relaxTime <= 0) {
-                await new Audio().play(soundList.bell)
                 clearInterval(this.timer);
+
+                ServiceWorkerHelper.showNotification('Relax Time is over!').then()
+                await new Audio().play(soundList.bell)
                 if (this.autoEle.checked) this.startFocus()
                 else getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
             }
@@ -150,11 +152,11 @@ export class Controller {
     }
 
     /****기타****/
-    showInfo = () =>{
+    showInfo = () => {
         this.infoEle.classList.remove('hide')
     }
 
-    closeInfo = () =>{
+    closeInfo = () => {
         this.infoEle.classList.add('hide')
     }
 }
