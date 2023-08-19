@@ -1,3 +1,5 @@
+import {appServiceMessage} from "./tpyes";
+
 export default class ServiceWorkerHelper {
 
     static messageChannel: MessageChannel = new MessageChannel()
@@ -20,10 +22,10 @@ export default class ServiceWorkerHelper {
         }
     }
 
-    static async sendMessageToServiceWorker(message: any) {
+    static async sendMessageToServiceWorker<T>(message: appServiceMessage<T>) {
         navigator.serviceWorker.controller.postMessage({
-            command: 'message',
-            payload: message
+            command: message.command,
+            payload: message.payload
         });
     }
 
@@ -32,6 +34,9 @@ export default class ServiceWorkerHelper {
     }
 
     static async showNotification(title: string, options?: NotificationOptions) {
+
+        console.log('Notification.title:', title)
+
         const registration = await navigator.serviceWorker.getRegistration('../service-worker.js')
         if (registration) {
             await registration.showNotification(title, options)

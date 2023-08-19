@@ -17,13 +17,14 @@ export class Controller {
 
     originFocusTime: number = 0
     originRelaxTime: number = 0
-    focusTime: number = 0
-    relaxTime: number = 0
+    runningTime: number = 0
 
     isFocus: boolean = true
 
     timer!: NodeJS.Timer
     startTime: number = 0; // 시작 시간을 저장할 변수
+
+    isRunning: boolean = false
 
     constructor() {
         this.focusEle = getById<HTMLInputElement>('f_time')
@@ -73,9 +74,9 @@ export class Controller {
         //타이머 시작
     start = () => {
         // 시간 저장 (분을 초로 변환)
-        this.originFocusTime = this.focusTime = Number(this.focusEle.value) * 60
-        this.originRelaxTime = this.relaxTime = Number(this.relaxEle.value) * 60
-        this.updateTimeDisplay(this.focusTime)
+        this.originFocusTime = this.runningTime = Number(this.focusEle.value) * 60
+        this.originRelaxTime = Number(this.relaxEle.value) * 60
+        this.updateTimeDisplay(this.runningTime)
 
         //화면 전환
         this.settingEle.classList.add('hide')
@@ -84,6 +85,10 @@ export class Controller {
         // 시작 시간 기록
         this.startTime = Date.now();
         this.timer = setInterval(this.timerAction, 100)
+        this.isFocus = true
+
+        ServiceWorkerHelper.sendMessageToServiceWorker({}).then().catch()
+
     }
 
     end = () => {
@@ -98,28 +103,19 @@ export class Controller {
     timerAction = async () => {
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
-        if (this.isFocus) {
-            this.focusTime = this.originFocusTime - elapsed;
-            this.updateTimeDisplay(this.focusTime);
-            if (this.focusTime <= 0) {
-                clearInterval(this.timer);
+        this.runningTime = this.originFocusTime - elapsed;
+        this.updateTimeDisplay(this.runningTime);
+        if (this.runningTime <= 0) {
+            if (!this.isRunning) return
+            this.isRunning = false
+            clearInterval(this.timer);
 
-                ServiceWorkerHelper.showNotification('Focus Time is over!').then()
-                await new Audio().play(soundList.bell)
-                if (this.autoEle.checked) this.startRelax()
-                else getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide');
-            }
-        } else {
-            this.relaxTime = this.originRelaxTime - elapsed;
-            this.updateTimeDisplay(this.relaxTime);
-            if (this.relaxTime <= 0) {
-                clearInterval(this.timer);
-
-                ServiceWorkerHelper.showNotification('Relax Time is over!').then()
-                await new Audio().play(soundList.bell)
-                if (this.autoEle.checked) this.startFocus()
-                else getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
-            }
+            ServiceWorkerHelper.showNotification(
+                this.isFocus ? 'Focus Time is over!' : 'Relax Time is over!'
+            ).then().catch()
+            await new Audio().play(soundList.bell)
+            if (this.autoEle.checked) this.isFocus ? this.startRelax() : this.startFocus()
+            else this.isFocus ? getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide') : getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
         }
     }
 
@@ -135,7 +131,7 @@ export class Controller {
     startRelax = () => {
         this.startTime = Date.now();
         this.isFocus = false;
-        this.relaxTime = Number(this.relaxEle.value) * 60;
+        this.runningTime = Number(this.relaxEle.value) * 60;
         getById<HTMLButtonElement>('btn-relax-start').classList.add('hide');
         getById<HTMLButtonElement>('display-message').textContent = "Relax"
         this.timer = setInterval(this.timerAction, 500);
@@ -145,7 +141,7 @@ export class Controller {
     startFocus = () => {
         this.startTime = Date.now();
         this.isFocus = true;
-        this.focusTime = Number(this.focusEle.value) * 60;
+        this.runningTime = Number(this.focusEle.value) * 60;
         getById<HTMLButtonElement>('btn-focus-start').classList.add('hide');
         getById<HTMLButtonElement>('display-message').textContent = "Focus"
         this.timer = setInterval(this.timerAction, 500);
