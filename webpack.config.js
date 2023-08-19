@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     // mode: "development",
@@ -14,9 +14,9 @@ module.exports = {
     output: {
         filename: (pathData) => {
             if (pathData.chunk.name === 'serviceWorker') {
-                return 'service-worker.js';
+                return '[contenthash]_service-worker.js';
             }
-            return '[name]/index.js';
+            return '[name]/[contenthash].js';
         },
         path: path.resolve(__dirname, 'app'),
     },
@@ -54,20 +54,20 @@ module.exports = {
             ],
         })
     ],
-    // optimization: {
-    //     minimize: true,
-    //     minimizer: [
-    //         new TerserPlugin({
-    //             terserOptions: {
-    //                 // 난독화 옵션
-    //                 mangle: true, // 변수 이름을 짧고 의미 없는 것으로 변경
-    //                 compress: {
-    //                     drop_console: true, // 콘솔 로그 제거
-    //                 },
-    //             },
-    //         }),
-    //     ],
-    // },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    // 난독화 옵션
+                    mangle: true, // 변수 이름을 짧고 의미 없는 것으로 변경
+                    compress: {
+                        drop_console: true, // 콘솔 로그 제거
+                    },
+                },
+            }),
+        ],
+    },
 
     devServer: {
         static: {

@@ -1,6 +1,7 @@
 import {getById} from "../utils/domUtils";
 import {Audio, soundList} from "../utils/Audio";
 import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
+import {appServiceName} from "../utils/tpyes";
 
 export class Controller {
     private static shared: Controller
@@ -87,8 +88,15 @@ export class Controller {
         this.timer = setInterval(this.timerAction, 100)
         this.isFocus = true
 
-        ServiceWorkerHelper.sendMessageToServiceWorker({}).then().catch()
-
+        ServiceWorkerHelper.sendMessageToServiceWorker<string>({
+            command: appServiceName.focusmanager,
+            payload: 'start'
+        }).then((res) => {
+                console.log('메인 스레드에서 받은 메시지:', res);
+            }
+        ).catch(e => {
+            console.log('메인 스레드에서 받은 메시지:', e);
+        })
     }
 
     end = () => {
