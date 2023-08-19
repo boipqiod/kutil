@@ -34,7 +34,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/main/index.html',
             filename: './main/index.html',
@@ -43,7 +42,6 @@ module.exports = {
             template: './src/focusmanager/index.html',
             filename: './focusmanager/index.html',
         }),
-
         new CopyWebpackPlugin({
             patterns: [
                 {
@@ -54,7 +52,10 @@ module.exports = {
                     },
                 },
             ],
-        })
+        }),
+        new CleanWebpackPlugin({
+            cleanStaleWebpackAssets: false,
+        }),
     ],
     optimization: {
         minimize: true,

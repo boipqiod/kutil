@@ -1,7 +1,7 @@
 import {getById} from "../utils/domUtils";
-import {Audio, soundList} from "../utils/Audio";
 import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 import {appServiceName} from "../utils/tpyes";
+import {soundList} from "../utils/Audio";
 
 export class Controller {
     private static shared: Controller
@@ -129,7 +129,7 @@ export class Controller {
             }).catch((e) => {
                     console.log('showNotification error:', e)
             })
-            await new Audio().play(soundList.bell)
+            await new Audio(soundList.bell).play()
             if (this.autoEle.checked) this.isFocus ? this.startRelax() : this.startFocus()
             else this.isFocus ? getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide') : getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
         }
