@@ -10,6 +10,7 @@
   "dependencies": {
     "copy-webpack-plugin": "^11.0.0",
     "path": "^0.12.7",
+    "sweetalert2": "^11.7.25",
     "terser-webpack-plugin": "^5.3.9",
     "workbox-webpack-plugin": "^7.0.0"
   },
