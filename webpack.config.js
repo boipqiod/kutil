@@ -1,19 +1,23 @@
 const path = require('path');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-const {InjectManifest} = require('workbox-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     // mode: "development",
     mode: "production",
     entry: {
+        serviceWorker: './src/service-worker.ts',
         main: './src/main/index.ts',
         focusmanager: './src/focusmanager/index.ts',
     },
     output: {
-        filename: '[name]/index.js',
+        filename: (pathData) => {
+            if (pathData.chunk.name === 'serviceWorker') {
+                return 'service-worker.js';
+            }
+            return '[name]/index.js';
+        },
         path: path.resolve(__dirname, 'app'),
     },
     resolve: {

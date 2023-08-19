@@ -2,7 +2,8 @@
   "compilerOptions": {
     "outDir": "./app",
     "module": "commonjs",
-    "target": "es6"
+    "target": "es6",
+    "lib": ["es6", "DOM", "WebWorker"],
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
