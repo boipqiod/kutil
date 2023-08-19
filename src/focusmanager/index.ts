@@ -2,14 +2,11 @@ import {Controller} from "./Controller";
 import {Indicator} from "../utils/Indicator";
 import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 
-const BASE_URL = "/kuitl/"
-
 window.onload = async () =>{
     Indicator.instance.setIndicator()
 
-    const notification =  await Notification.requestPermission()
-    console.log(notification)
-
+    const notification = await Notification.requestPermission()
+    console.log("notification", notification)
     await ServiceWorkerHelper.registerServiceWorker()
 
     new Controller().init()

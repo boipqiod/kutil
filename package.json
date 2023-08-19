@@ -5,7 +5,6 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "start": "webpack && webpack-dev-server",
-    "serve": "serve ./ -l 8080",
     "dev": "webpack-dev-server & webpack --watch"
   },
   "dependencies": {

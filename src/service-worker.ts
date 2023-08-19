@@ -3,10 +3,12 @@ const _self = self as unknown as ServiceWorkerGlobalScope;
 
 _self.addEventListener('install', (event) => {
     console.log('Service Worker installing.');
+    console.log(event)
 })
 
 _self.addEventListener('activate', (event) => {
     console.log('Service Worker activating.');
+    console.log(event)
 });
 
 _self.addEventListener('message', (event) => {
@@ -22,14 +24,13 @@ _self.addEventListener('message', (event) => {
 
 _self.addEventListener('push', (event) => {
     console.log('Service Worker push.');
-    console.log(event);
+    console.log(event.data.text());
     const title = event.data.text()
     const options = {
         body: event.data.text(),
     };
     event.waitUntil(_self.registration.showNotification(title, options));
     console.log('Service Worker push end.');
-
 });
 
 _self.addEventListener('notificationclick', (event) => {

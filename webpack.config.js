@@ -33,26 +33,19 @@ module.exports = {
         ],
     },
     plugins: [
-        // new HtmlWebpackPlugin({
-        //     template: './src/main/index.html',
-        //     filename: './main/index.html',
-        // }),
-        // new HtmlWebpackPlugin({
-        //     template: './src/focusmanager/index.html',
-        //     filename: './focusmanager/index.html',
-        // }),
+        new HtmlWebpackPlugin({
+            template: './src/main/index.html',
+            filename: './main/index.html',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/focusmanager/index.html',
+            filename: './focusmanager/index.html',
+        }),
 
         new CopyWebpackPlugin({
             patterns: [
                 {
                     from: 'src/**/*.json',
-                    to: ({ context, absoluteFilename }) => {
-                        const relativePath = path.relative(context, absoluteFilename);
-                        return relativePath.replace(/^src\//, ''); // 'src/' 부분 제거
-                    },
-                },
-                {
-                    from: 'src/**/*.html',
                     to: ({ context, absoluteFilename }) => {
                         const relativePath = path.relative(context, absoluteFilename);
                         return relativePath.replace(/^src\//, ''); // 'src/' 부분 제거
