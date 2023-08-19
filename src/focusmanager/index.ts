@@ -7,6 +7,9 @@ const BASE_URL = "/kuitl/"
 window.onload = async () =>{
     Indicator.instance.setIndicator()
 
+    const notification =  await Notification.requestPermission()
+    console.log(notification)
+
     await ServiceWorkerHelper.registerServiceWorker()
 
     new Controller().init()

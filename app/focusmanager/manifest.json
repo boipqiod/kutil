@@ -3,12 +3,12 @@
   "short_name": "focusmanager",
   "icons": [
     {
-      "src": "/kutil/public/assets/focusmanager/fm_icon.png",
+      "src": "../../public/assets/focusmanager/fm_icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
-  "start_url": "/kutil/focusmanager",
+  "start_url": "../focusmanager",
   "display": "fullscreen",
   "background_color": "#000000",
   "theme_color": "#000000",
