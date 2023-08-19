@@ -4,7 +4,7 @@ import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 import swal from 'sweetalert2'
 
 window.onload = async () =>{
-    Indicator.instance.setIndicator()
+    // Indicator.instance.setIndicator()
 
     const push = await swal.fire({
         title: '푸시 알림을 받으시겠습니까?',
