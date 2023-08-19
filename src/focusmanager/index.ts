@@ -1,19 +1,17 @@
 import {Controller} from "./Controller";
-import {Utils} from "../utils/Utils";
-import {Audio, soundList} from "../utils/Audio";
 import {Indicator} from "../utils/Indicator";
+import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 
 const BASE_URL = "/kuitl/"
 
 window.onload = async () =>{
     Indicator.instance.setIndicator()
 
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../serviceWorker.js').then(() => {
-            console.log('Service Worker Registered');
-        });
-    }
-    new Controller().init()
-    Indicator.instance.hideIndicator()
+    await ServiceWorkerHelper.registerServiceWorker()
 
+    new Controller().init()
+
+    // await ServiceWorkerHelper.pushMessageToServiceWorker({type: 'init', data: {url: BASE_URL}})
+
+    Indicator.instance.hideIndicator()
 }

@@ -1,5 +1,6 @@
 import {getById} from "../utils/domUtils";
 import {Audio, soundList} from "../utils/Audio";
+import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 
 export class Controller {
     private static shared: Controller
@@ -57,6 +58,8 @@ export class Controller {
     //이벤트 리스너 함수
     startAction = () => {
 
+        ServiceWorkerHelper.sendMessageToServiceWorker("hello").then(r => console.log(r))
+
         if (
             this.focusEle.value === "" ||
             this.relaxEle.value === "" ||
@@ -94,12 +97,8 @@ export class Controller {
     }
 
     // 타이머 액션
-    timerAction = async () => {
+    timerAction = async ()  => {
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
-
-        navigator.serviceWorker?.controller?.postMessage({
-            command: "1223"
-        })
 
         if (this.isFocus) {
             this.focusTime = this.originFocusTime - elapsed;

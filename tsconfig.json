@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "outDir": "./app",
     "module": "commonjs",
-    "strict": true
+    "target": "es6"
   },
-  "include": [
-    "./src/**/*",
-  ],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
