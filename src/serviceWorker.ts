@@ -1,12 +1,29 @@
-import { precacheAndRoute } from 'workbox-precaching';
-declare const _self: ServiceWorkerGlobalScope;
 
-// Workbox가 주입하는 미리 캐시할 파일 목록
-declare const __WB_MANIFEST: { url: string, revision: string }[];
-precacheAndRoute(__WB_MANIFEST);
-_self.__WB_MANIFEST;
+const CACHE_NAME = 'my-cache';
+const urlsToCache = [
+    '/',
+    '/styles/main.css',
+    '/script/main.js'
+];
 
+self.addEventListener('install', (event: any) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
+            })
+    );
+});
 
-self.addEventListener('message', event => {
-    console.log("!!")
+self.addEventListener('fetch', (event: any) => {
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+            })
+    );
 });

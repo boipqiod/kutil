@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const {InjectManifest} = require("workbox-webpack-plugin");
 
 // 현재 페이지 리스트
 const pageList = ["main", "focusmanager"];
@@ -34,11 +33,6 @@ module.exports = {
     },
     plugins: [
         ...getConfigByList(pageList).plugins,
-        new InjectManifest({
-            swSrc: './src/serviceWorker.ts',
-            swDest: 'serviceWorker.js',
-            exclude: [/\.map$/, /manifest\.json$/],
-        }),
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'public', to: '../kutil/public'}
@@ -65,8 +59,6 @@ module.exports = {
             directory: path.join(__dirname), // 정적 파일의 경로
         },
         port: 8000,
-        compress: true,
-        hot: true,
     }
 };
 
