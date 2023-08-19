@@ -20,7 +20,12 @@ export default class ServiceWorkerHelper {
         }
 
         await navigator.serviceWorker.ready
-        await this.showNotification('hello', { body: 'hello' })
+
+        setTimeout(async ()=>{
+            await this.showNotification('hello', { body: 'hello' })
+        }, 10000)
+
+
     }
 
 
