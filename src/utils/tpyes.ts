@@ -3,6 +3,6 @@ export enum appServiceName {
 }
 
 export type appServiceMessage<T> = {
-    command: appServiceName,
+    appName: appServiceName,
     payload: T
 }

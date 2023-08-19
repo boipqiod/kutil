@@ -10,6 +10,8 @@ export class Controller {
     relaxEle: HTMLInputElement
 
     autoEle: HTMLInputElement
+    pushEle: HTMLInputElement
+    soundEle: HTMLInputElement
 
     settingEle: HTMLDivElement
     timerEle: HTMLDivElement
@@ -32,6 +34,8 @@ export class Controller {
         this.relaxEle = getById<HTMLInputElement>('r_time')
 
         this.autoEle = getById<HTMLInputElement>('auto')
+        this.pushEle = getById<HTMLInputElement>('push')
+        this.soundEle = getById<HTMLInputElement>('sound')
 
         this.settingEle = getById<HTMLInputElement>('setting')
         this.timerEle = getById<HTMLInputElement>('timer')
@@ -79,6 +83,9 @@ export class Controller {
         this.originRelaxTime = Number(this.relaxEle.value) * 60
         this.updateTimeDisplay(this.runningTime)
 
+        console.log('this.originFocusTime:', this.originFocusTime)
+        console.log('this.originRelaxTime:', this.originRelaxTime)
+
         //화면 전환
         this.settingEle.classList.add('hide')
         this.timerEle.classList.remove('hide')
@@ -88,16 +95,7 @@ export class Controller {
         this.isRunning = true
         this.timer = setInterval(this.timerAction, 100)
         this.isFocus = true
-
-        ServiceWorkerHelper.sendMessageToServiceWorker<string>({
-            command: appServiceName.focusmanager,
-            payload: 'start'
-        }).then((res) => {
-                console.log('메인 스레드에서 받은 메시지:', res);
-            }
-        ).catch(e => {
-            console.log('메인 스레드에서 받은 메시지:', e);
-        })
+        this.sendToServiceWorker('start')
     }
 
     end = () => {
@@ -105,31 +103,40 @@ export class Controller {
         this.timerEle.classList.add('hide')
         this.settingEle.classList.remove('hide')
         this.isFocus = true
+        this.isRunning = false
         clearInterval(this.timer)
+        this.sendToServiceWorker('end')
     }
 
     // 타이머 액션
     timerAction = async () => {
         const elapsed = (Date.now() - this.startTime) / 1000; // 초 단위로 경과 시간 계산
 
-        this.runningTime = this.originFocusTime - elapsed * 100;
+        this.runningTime -= elapsed;
         this.updateTimeDisplay(this.runningTime);
         if (this.runningTime <= 0) {
             clearInterval(this.timer)
+            this.sendToServiceWorker('start')
 
-            console.log('타이머 종료')
-            console.log('this.isRunning:', this.isRunning)
             if (!this.isRunning) return
             this.isRunning = false
 
-            ServiceWorkerHelper.showNotification(
-                this.isFocus ? 'Focus Time is over!' : 'Relax Time is over!'
-            ).then( () => {
-                console.log('showNotification success')
-            }).catch((e) => {
-                    console.log('showNotification error:', e)
-            })
-            await new Audio(soundList.bell).play()
+            //푸시 알림
+            if (this.pushEle.checked) {
+                ServiceWorkerHelper.showNotification(
+                    this.isFocus ? 'Focus Time is over! Good job' : 'Relax Time is over! Ready to focus',
+                    {
+                        body: 'Click to start next session'
+
+                    }
+                ).then().catch()
+            }
+
+            //소리 재생
+            if (this.soundEle?.checked) {
+                await new Audio(soundList.bell).play().catch(e => console.log(e))
+            }
+
             if (this.autoEle.checked) this.isFocus ? this.startRelax() : this.startFocus()
             else this.isFocus ? getById<HTMLButtonElement>('btn-relax-start').classList.remove('hide') : getById<HTMLButtonElement>('btn-focus-start').classList.remove('hide');
         }
@@ -147,7 +154,7 @@ export class Controller {
     startRelax = () => {
         this.startTime = Date.now();
         this.isFocus = false;
-        this.runningTime = Number(this.relaxEle.value) * 60;
+        this.runningTime = this.originRelaxTime
         getById<HTMLButtonElement>('btn-relax-start').classList.add('hide');
         getById<HTMLButtonElement>('display-message').textContent = "Relax"
         this.isRunning = true
@@ -158,7 +165,7 @@ export class Controller {
     startFocus = () => {
         this.startTime = Date.now();
         this.isFocus = true;
-        this.runningTime = Number(this.focusEle.value) * 60;
+        this.runningTime = this.originFocusTime
         getById<HTMLButtonElement>('btn-focus-start').classList.add('hide');
         getById<HTMLButtonElement>('display-message').textContent = "Focus"
         this.isRunning = true
@@ -172,5 +179,17 @@ export class Controller {
 
     closeInfo = () => {
         this.infoEle.classList.add('hide')
+    }
+
+    sendToServiceWorker = (type: "start" | "end") => {
+        try {
+            ServiceWorkerHelper.sendMessageToServiceWorker<string>({
+                appName: appServiceName.focusmanager,
+                payload: type
+            }).then()
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 }

@@ -1,3 +1,4 @@
+import {FocusManagerSW} from "./focusmanager/sw";
 
 const _self = self as unknown as ServiceWorkerGlobalScope;
 
@@ -11,16 +12,22 @@ _self.addEventListener('activate', (event) => {
     console.log(event)
 });
 
-_self.addEventListener('message', (event) => {
+_self.addEventListener('message',  async (event) => {
     console.log('메인으로부터 메시지 받음:', event);
 
-    console.log(event)
+    const data = event.data
 
-    // 메인으로 메시지 보내기
-    event.source.postMessage({
-        status: 'success',
-        payload: "메시지 받음"
-    });
+    switch (data.appName) {
+        case 'focusmanager':{
+            FocusManagerSW.instance.setClient(event.source)
+            if (data.payload === 'start') {
+                FocusManagerSW.instance.startSend()
+            } else if (data.payload === 'end') {
+                FocusManagerSW.instance.endSend()
+            }
+        }
+    }
+
 });
 
 

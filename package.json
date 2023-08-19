@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "start": "webpack && webpack-dev-server",
+    "start": "webpack-dev-server",
     "dev": "webpack-dev-server & webpack --watch"
   },
   "dependencies": {

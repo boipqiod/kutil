@@ -23,8 +23,6 @@ export default class ServiceWorkerHelper {
     }
 
     static async sendMessageToServiceWorker<T>(message: appServiceMessage<T>) {
-        console.log('메인 스레드에서 보낼 메시지:', message)
-
         try {
             this.registration?.active?.postMessage(message)
         }catch (e) {
