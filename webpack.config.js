@@ -14,9 +14,9 @@ module.exports = {
     output: {
         filename: (pathData) => {
             if (pathData.chunk.name === 'serviceWorker') {
-                return '[contenthash]_service-worker.js';
+                return 'service-worker.js';
             }
-            return '[name]/[contenthash].js';
+            return '[name]/[contenthash].[name].js';
         },
         path: path.resolve(__dirname, 'app'),
     },
@@ -62,7 +62,7 @@ module.exports = {
                     // 난독화 옵션
                     mangle: true, // 변수 이름을 짧고 의미 없는 것으로 변경
                     compress: {
-                        drop_console: true, // 콘솔 로그 제거
+                        // drop_console: true, // 콘솔 로그 제거
                     },
                 },
             }),

@@ -2,7 +2,7 @@ import {appServiceMessage} from "./tpyes";
 
 export default class ServiceWorkerHelper {
 
-    static messageChannel: MessageChannel = new MessageChannel()
+    protected static registration: ServiceWorkerRegistration | undefined
 
     static async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
@@ -14,7 +14,7 @@ export default class ServiceWorkerHelper {
             if (!registration) {
                 await navigator.serviceWorker.register('../service-worker.js')
             } else {
-
+                this.registration = registration
                 console.log('Service Worker is already registered.')
             }
         } else {
@@ -23,26 +23,17 @@ export default class ServiceWorkerHelper {
     }
 
     static async sendMessageToServiceWorker<T>(message: appServiceMessage<T>) {
-        navigator.serviceWorker.controller.postMessage({
-            command: message.command,
-            payload: message.payload
-        });
-    }
+        console.log('메인 스레드에서 보낼 메시지:', message)
 
-    static async pushMessageToServiceWorker(message: any) {
+        try {
+            this.registration?.active?.postMessage(message)
+        }catch (e) {
 
-    }
-
-    static async showNotification(title: string, options?: NotificationOptions) {
-
-        console.log('Notification.title:', title)
-
-        const registration = await navigator.serviceWorker.getRegistration('../service-worker.js')
-        if (registration) {
-            await registration.showNotification(title, options)
-        } else {
-            console.log('Service Worker is not registered.')
+            console.log(e)
         }
+    }
+    static async showNotification(title: string, options?: NotificationOptions) {
+        await this.registration?.showNotification(title, options)
     }
 
     constructor() {

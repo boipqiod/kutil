@@ -14,8 +14,10 @@ _self.addEventListener('activate', (event) => {
 _self.addEventListener('message', (event) => {
     console.log('메인으로부터 메시지 받음:', event);
 
+    console.log(event)
+
     // 메인으로 메시지 보내기
-    event.ports[0].postMessage({
+    event.source.postMessage({
         status: 'success',
         payload: "메시지 받음"
     });
