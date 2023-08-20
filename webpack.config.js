@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+// const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
     // mode: "development",
@@ -53,9 +53,9 @@ module.exports = {
                 },
             ],
         }),
-        new CleanWebpackPlugin({
-            cleanStaleWebpackAssets: false,
-        }),
+        // new CleanWebpackPlugin({
+        //     cleanStaleWebpackAssets: false,
+        // }),
     ],
     optimization: {
         minimize: true,
