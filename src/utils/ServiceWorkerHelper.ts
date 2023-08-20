@@ -6,9 +6,6 @@ export default class ServiceWorkerHelper {
 
     static async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('message', function(event) {
-                console.log('메인 스레드에서 받은 메시지:', event.data);
-            });
 
             const registration = await navigator.serviceWorker.getRegistration('../service-worker.js');
             if (!registration) {
@@ -24,9 +21,9 @@ export default class ServiceWorkerHelper {
 
     static async sendMessageToServiceWorker<T>(message: appServiceMessage<T>) {
         try {
-            this.registration?.active?.postMessage(message)
-        }catch (e) {
+            await this.registration?.active?.postMessage(message)
 
+        }catch (e) {
             console.log(e)
         }
     }

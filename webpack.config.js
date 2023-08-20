@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-// const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
     // mode: "development",
@@ -53,9 +53,9 @@ module.exports = {
                 },
             ],
         }),
-        // new CleanWebpackPlugin({
-        //     cleanStaleWebpackAssets: false,
-        // }),
+        new CleanWebpackPlugin({
+            cleanStaleWebpackAssets: false,
+        }),
     ],
     optimization: {
         minimize: true,
@@ -65,7 +65,7 @@ module.exports = {
                     // 난독화 옵션
                     mangle: true, // 변수 이름을 짧고 의미 없는 것으로 변경
                     compress: {
-                        // drop_console: true, // 콘솔 로그 제거
+                        drop_console: true, // 콘솔 로그 제거
                     },
                 },
             }),

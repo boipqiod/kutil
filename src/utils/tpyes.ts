@@ -3,6 +3,19 @@ export enum appServiceName {
 }
 
 export type appServiceMessage<T> = {
-    appName: appServiceName,
+    command: appServiceName,
+    type: string,
     payload: T
+}
+
+export type focusmanagerInit = {
+    isAuto: boolean,
+    isPush: boolean,
+    focusTime: number,
+    relaxTime: number,
+}
+
+export type focusmanagerDisplay = {
+    isFocus: boolean,
+    runningTime: number,
 }

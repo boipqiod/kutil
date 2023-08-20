@@ -1,18 +1,9 @@
 import {Controller} from "./Controller";
-import {Indicator} from "../utils/Indicator";
 import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
+import {appServiceName} from "../utils/tpyes";
 
 window.onload = async () => {
-    // Indicator.instance.setIndicator()
     await ServiceWorkerHelper.registerServiceWorker()
-
-
-    //오디오 재생 가능 여부 확인
-    try {
-        await new Audio().play()
-    } catch (e) {
-        document.getElementById('sound-label').remove()
-    }
 
     //화면 꺼짐 방지
     try {
@@ -35,5 +26,13 @@ window.onload = async () => {
     }
 
     new Controller().init()
-    Indicator.instance.hideIndicator()
+}
+
+//페이지 이동시 포커스 매니저 종료
+window.onbeforeunload = () => {
+    ServiceWorkerHelper.sendMessageToServiceWorker<string>({
+        command: appServiceName.focusmanager,
+        type: 'end',
+        payload: ''
+    }).then().catch()
 }

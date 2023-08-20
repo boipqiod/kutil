@@ -1,4 +1,6 @@
 import {FocusManagerSW} from "./focusmanager/sw";
+import {appServiceMessage, focusmanagerInit} from "./utils/tpyes";
+import {populateDependencyGraph} from "ts-loader/dist/utils";
 
 const _self = self as unknown as ServiceWorkerGlobalScope;
 
@@ -13,16 +15,18 @@ _self.addEventListener('activate', (event) => {
 });
 
 _self.addEventListener('message',  async (event) => {
-    console.log('메인으로부터 메시지 받음:', event);
+    const data = event.data as appServiceMessage<any>
 
-    const data = event.data
-
-    switch (data.appName) {
+    switch (data.command) {
         case 'focusmanager':{
-            FocusManagerSW.instance.setClient(event.source)
-            if (data.payload === 'start') {
-                FocusManagerSW.instance.startSend()
-            } else if (data.payload === 'end') {
+            if(data.type === 'init') {
+                const payload = data.payload as focusmanagerInit
+                FocusManagerSW.instance.setClient(event.source, _self)
+                FocusManagerSW.instance.init(payload)
+            }
+            else if (data.type === 'start') {
+                FocusManagerSW.instance.startTimer().then()
+            } else if (data.type === 'end') {
                 FocusManagerSW.instance.endSend()
             }
         }
