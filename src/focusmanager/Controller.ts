@@ -63,6 +63,13 @@ export class Controller {
             this.sendToServiceWorker('start')
         });
         getById<HTMLButtonElement>('btn-info').addEventListener('click', this.showInfo);
+
+        this.pushEle.addEventListener('click', () => {
+            if(Notification.permission === 'default') {
+                this.pushEle.checked = false
+                alert('Please allow push notification\nClick button that right side of "Start" button')
+            }
+        })
         this.infoEle.addEventListener('click', this.closeInfo)
     }
     //이벤트 리스너 함수
@@ -221,6 +228,8 @@ export class Controller {
                 const payload = data.payload as focusmanagerDisplay
                 this.isFocus = payload.isFocus
                 this.runningTime = payload.runningTime
+
+                console.log('display', payload)
 
                 this.updateTimeDisplay(this.runningTime, this.isFocus ? 'focus' : 'relax')
                 if (this.runningTime <= 0) {

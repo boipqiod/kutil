@@ -1,8 +1,11 @@
 import {Controller} from "./Controller";
 import ServiceWorkerHelper from "../utils/ServiceWorkerHelper";
 import {appServiceName} from "../utils/tpyes";
+import {Indicator} from "../utils/Indicator";
 
 window.onload = async () => {
+    Indicator.instance.setIndicator()
+
     await ServiceWorkerHelper.registerServiceWorker()
 
     //화면 꺼짐 방지
@@ -10,11 +13,11 @@ window.onload = async () => {
         const wakeLock = await navigator.wakeLock.request("screen");
         console.log('wakeLock:', wakeLock)
     } catch (err) {
-        // the wake lock request fails - usually system related, such being low on battery
         console.log(`${err.name}, ${err.message}`);
     }
 
-    console.log('Notification.permission:', Notification.permission)
+    console.log(Notification.permission)
+
     if (Notification.permission === 'default') {
         const subscribeButton = document.getElementById('subscribeButton')
         subscribeButton.style.display = 'block'
@@ -22,10 +25,13 @@ window.onload = async () => {
             await Notification.requestPermission()
             window.location.reload()
         });
-
+    } else if(Notification.permission !== 'denied') {
+        const pushEle = document.getElementById('label-push') as HTMLInputElement
+        pushEle.style.display = 'flex'
     }
 
     new Controller().init()
+    Indicator.instance.hideIndicator()
 }
 
 //페이지 이동시 포커스 매니저 종료

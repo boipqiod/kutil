@@ -26,13 +26,13 @@
             <div>
                 <p class="content-text">
                     focus time<br>
-                    <label><input class="input" id="f_time" type="number" min="50" value="1">min</label>
+                    <label><input class="input" id="f_time" type="number" min="1" value="50">min</label>
                 </p>
             </div>
             <div>
                 <p class="content-text">
                     relax time<br>
-                    <label><input class="input" id="r_time" type="number" min="10" value="1">min</label>
+                    <label><input class="input" id="r_time" type="number" min="1" value="10">min</label>
                 </p>
             </div>
             <div>
@@ -40,7 +40,7 @@
                     <input id="auto" hidden class="checkbox" type="checkbox">
                     <span class="checkbox_label"></span> auto play
                 </label>
-                <label for="push" class="flex row ac">
+                <label id="label-push" for="push" class="flex row ac" style="display: none">
                     <input id="push" hidden class="checkbox" type="checkbox">
                     <span class="checkbox_label"></span> push notification
                 </label>
@@ -49,7 +49,9 @@
         <div class="focusmanager-button flex column ac">
             <div style="width: 100%; display: flex" class="">
                 <button style="width: 100%; margin: 5px;" id="btn-start" class="button">Start</button>
-                <button style="display: none; margin: 5px; width: 20%" class="button" id="subscribeButton">push</button>
+                <button style="display: none; margin: 5px; width: 15%" class="button" id="subscribeButton">
+                    <img src="../../public/assets/focusmanager/i_notification.png"/>
+                </button>
             </div>
             <button id="btn-info" class="button none">What is this?</button>
         </div>

@@ -24,7 +24,7 @@ export class FocusManagerSW {
     isRunning: boolean = false
     isFocus: boolean = true
 
-    runningTime: number = 0
+    runningTime: number = 1
 
     isAuto: boolean = false
     isPush: boolean = false
@@ -39,9 +39,10 @@ export class FocusManagerSW {
     }
 
     init = (initDta: focusmanagerInit) => {
+
         this.isAuto = initDta.isAuto
         this.isPush = initDta.isPush
-        this.focusTime = initDta.focusTime
+        this.focusTime = this.runningTime = initDta.focusTime
         this.relaxTime = initDta.relaxTime
         this.isFocus = true
 
@@ -60,18 +61,15 @@ export class FocusManagerSW {
     }
 
     startTimer = async () => {
-        console.log('startTimer')
-
         this.isRunning = true
         this.startTime = Date.now();
         this.timer = setInterval(() => {
             // 남은 시간 계산
-            this.runningTime = this.isFocus ? this.focusTime - Math.floor((Date.now() - this.startTime) / 100) : this.relaxTime - Math.floor((Date.now() - this.startTime) / 100)
+            this.runningTime = this.isFocus ? this.focusTime - Math.floor((Date.now() - this.startTime) / 1000) : this.relaxTime - Math.floor((Date.now() - this.startTime) / 1000)
             this.sendDisplay(this.isFocus, this.runningTime)
 
             // 시간이 남았으면 리턴
             if (this.runningTime > 0) return
-
             //타이머 종료
             clearInterval(this.timer)
             if (!this.isRunning) return
@@ -81,7 +79,8 @@ export class FocusManagerSW {
                 this.sw?.registration.showNotification(
                     this.isFocus ? 'Focus Time is over!' : 'Relax Time is over!',
                     {
-                        body: this.isFocus ? 'Relax Time is over! Ready to focus' : '',
+                        body: this.isFocus ? 'Relax Time is over! Ready to focus' : 'Focus Time is over! Enjoy your break',
+                        icon:  '../public/assets/focusmanager/fm_icon.png',
                     }
                 ).then().catch()
             }
