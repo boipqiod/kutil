@@ -8,9 +8,9 @@
 # testing
 /coverage
 
-# next.js
+# next.js성
 /.next/
-#/out/
+/out/
 
 # production
 /build
@@ -33,3 +33,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/kutil-pages/

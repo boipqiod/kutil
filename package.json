@@ -5,20 +5,27 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:depoly": "next export",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build && next export && gh-pages -d out"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "firebase": "^10.3.0",
+    "framer-motion": "^10.16.1",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "@react-buddy/ide-toolbox-next": "^2.4.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.1"
   },
   "devDependencies": {
     "gh-pages": "^6.0.0"

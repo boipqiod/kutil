@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/kutils',
-  assetPrefix: '/kutils/',
+  basePath: '/kutil-pages',
+  assetPrefix: '/kutil-pages/',
 }
 
 module.exports = nextConfig
