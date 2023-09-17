@@ -21,18 +21,13 @@ const Section = (props: {pageType: pageType, pages: pageInfo[]}) => {
       p={"10px"}
       spacing={"10px"}
     >
-      {
-        props.pages.length !== 0 &&
-        <>
-          <Heading
-            w={"100%"}
-            textAlign={"center"}
-            size={"lg"}
-          >{props.pageType}
-          </Heading>
-          <CardList pages={props.pages} />
-        </>
-      }
+      <Heading
+        w={"100%"}
+        textAlign={"center"}
+        size={"lg"}
+      >{props.pageType}
+      </Heading>
+      <CardList pages={props.pages} />
     </Stack>
   )
 }
@@ -61,6 +56,7 @@ export const Home = () => {
         {
           Object.values(pageType).map((type, index) => {
             const pages = pagesListL.filter(page => page.type === type)
+            if(pages.length !== 0)
             return (
               <Section
                 key={index}

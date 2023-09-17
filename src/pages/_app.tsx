@@ -32,8 +32,8 @@ export default function App({Component, pageProps}: AppProps) {
             <Head>
                 <title>{"kutil"}</title>
                 <meta name="description" content="공상헌의 이모저모 페이지입니다"/>
-                <link rel="manifest" href="/manifest.json" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="manifest" href="./manifest.json" />
+                <link rel="icon" href="./favicon.ico" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <CommonLayout>
