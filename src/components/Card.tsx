@@ -6,7 +6,6 @@ export const Card = (page: pageInfo) => {
   const {toUrl} = usePage()
   return (
     <Stack
-      w={"100%"}
       h={"100%"}
       bg={"white"}
       _hover={{
@@ -21,14 +20,12 @@ export const Card = (page: pageInfo) => {
       }}
     >
       <Text
-        w={"100%"}
         textAlign={"center"}
         size={"md"}
         fontWeight={"bold"}
       >{page.title}
       </Text>
       <Text
-        w={"100%"}
         textAlign={"center"}
         size={"sm"}
       >{page.description}
@@ -46,6 +43,7 @@ export const CardList = (props: { pages: pageInfo[] }) => {
       spacing={"10px"}
       flexWrap={"wrap"}
       justifyContent={"start"}
+      direction={{base: "column", md: "row"}}
     >
       {props.pages.map((page, index) => {
         return (

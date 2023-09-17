@@ -70,6 +70,7 @@ export const StringToBase64 = () => {
     <>
       <Head>
         <title>{"kutil: StringToBase64"}</title>
+        <meta name="description" content="convert strong to base64"/>
       </Head>
       <Stack>
         <Heading

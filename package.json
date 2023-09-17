@@ -14,9 +14,12 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@react-buddy/ide-toolbox-next": "^2.4.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.1",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "@types/react-dropzone": "^5.1.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "firebase": "^10.3.0",
@@ -24,9 +27,8 @@
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2",
-    "@react-buddy/ide-toolbox-next": "^2.4.1",
-    "@react-buddy/palette-chakra-ui": "^2.3.1"
+    "react-dropzone": "^14.2.3",
+    "typescript": "5.2.2"
   },
   "devDependencies": {
     "gh-pages": "^6.0.0"

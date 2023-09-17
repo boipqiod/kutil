@@ -10,6 +10,12 @@ export const pagesListL: pageInfo[] = [
     description: "문자열을 Base64로 인코딩",
     path: "/util/string-to-base64",
     type: pageType.util,
+  },
+  {
+    title: "FileToBase64",
+    description: "파일을 Base64로 인코딩",
+    path: "/util/file-to-base64",
+    type: pageType.util,
   }
 ]
 
@@ -19,7 +25,6 @@ const Section = (props: {pageType: pageType, pages: pageInfo[]}) => {
       w={"100%"}
       h={"100%"}
       p={"10px"}
-      spacing={"10px"}
     >
       <Heading
         w={"100%"}
