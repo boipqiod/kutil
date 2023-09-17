@@ -1,11 +1,12 @@
 {
-  "name": "kutils",
+  "name": "kutil",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:depoly": "next export",
+    "deploy": "gh-pages -d out -b gh-pages",
+    "biuid:deploy": "next build && gh-pages -d out -b gh-pages",
     "start": "next start",
     "lint": "next lint"
   },

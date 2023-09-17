@@ -21,13 +21,18 @@ const Section = (props: {pageType: pageType, pages: pageInfo[]}) => {
       p={"10px"}
       spacing={"10px"}
     >
-      <Heading
-        w={"100%"}
-        textAlign={"center"}
-        size={"lg"}
-      >{props.pageType}
-      </Heading>
-      <CardList pages={props.pages}/>
+      {
+        props.pages.length !== 0 &&
+        <>
+          <Heading
+            w={"100%"}
+            textAlign={"center"}
+            size={"lg"}
+          >{props.pageType}
+          </Heading>
+          <CardList pages={props.pages} />
+        </>
+      }
     </Stack>
   )
 }

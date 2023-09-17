@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/kutil-pages',
-  assetPrefix: '/kutil-pages/',
+  // assetPrefix: process.env.NODE_ENV === 'production' ? './' : '',
+  // basePath: process.env.NODE_ENV === 'production' ? './' : ''
 }
 
 module.exports = nextConfig

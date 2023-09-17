@@ -2,12 +2,12 @@
   "name": "Kong's Utilities",
   "short_name": "Kutil",
   "description": "공상헌의 이모저모 페이지",
-  "start_url": "/kutil-pages/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#73749d",
   "icons": [
     {
-      "src": "/kutil-pages/icon.png",
+      "src": "/icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
