@@ -1,5 +1,6 @@
 export enum pageType {
   util = "util",
+  tool = "tool",
   image = "image",
   game = "game",
   blog = "blog",

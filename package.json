@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "gh-pages -d out -b gh-pages",
     "biuid:deploy": "next build && gh-pages -d out -b gh-pages",
     "start": "next start",
     "lint": "next lint"
