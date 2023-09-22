@@ -4,7 +4,7 @@ import Head from "next/head";
 
 export const FocusManager = () => {
     const [times, setTimes] = useState({
-        focus: 12,
+        focus: 50,
         relax: 10
     });
 
@@ -55,7 +55,7 @@ export const FocusManager = () => {
 
     const timerAction = () => {
         const now = new Date().getTime();
-        const runningTime = (now - startTime) * 100;
+        const runningTime = (now - startTime);
         const remainingTime = (isFocus ? times.focus : times.relax) * 60000 - runningTime;
         // 밀리초를 분과 초로 변환
         const min = Math.floor(remainingTime / 60000);
@@ -140,7 +140,7 @@ export const FocusManager = () => {
                                 name={"focus"}
                                 min={1}
                                 max={60}
-                                defaultValue={12}
+                                defaultValue={50}
                                 onChange={handleTimeChange}
                             />
                         </Stack>
