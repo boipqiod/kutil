@@ -2,9 +2,13 @@ import Head from "next/head";
 import {useDropzone} from 'react-dropzone';
 import {Heading, Stack, Textarea, Text, Button} from "@chakra-ui/react";
 import {useState} from "react";
+import {pagesListL} from "@/pages";
+import {pageType} from "@/types/page";
+import {CardList} from "@/components/Card";
 
 export const FileToBase64 = () => {
 
+  const utilPageList = pagesListL.filter(page => page.type === pageType.util && page.path !== "/util/string-to-base64");
   const [fileName, setFileName] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -99,12 +103,10 @@ export const FileToBase64 = () => {
           <Textarea
             id={"base64String"}
             placeholder={"Base64 String"}
-            resize={"none"}
             h={"300px"}
           />
         </Stack>
-
-
+        <CardList pages={utilPageList}/>
       </Stack>
     </>
   )

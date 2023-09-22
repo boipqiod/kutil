@@ -139,7 +139,6 @@ export const StringToBase64 = () => {
             </Stack>
           </Stack>
         </FormControl>
-        {/*  다른 유틸 페이지 카드뷰 형식으로 보여주기*/}
         <CardList pages={utilPageList}/>
       </Stack>
     </>
