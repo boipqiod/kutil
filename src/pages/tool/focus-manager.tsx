@@ -21,6 +21,32 @@ export const FocusManager = () => {
     const [isStart, setIsStart] = useState<boolean>(false);
 
     useEffect(() => {
+        let wakeLock:WakeLockSentinel | null = null;
+
+        const requestWakeLock = async () => {
+            try {
+                wakeLock = await navigator.wakeLock.request("screen");
+                wakeLock.addEventListener("release", () => {
+                    console.log("Wake Lock was released");
+                });
+                console.log("Wake Lock is active");
+            } catch (err: any) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        };
+
+        requestWakeLock().then();
+
+        return () => {
+            wakeLock?.release().catch(() => {
+                console.log("Wake Lock was already released");
+            });
+            wakeLock = null;
+        };
+    }, []);
+
+
+    useEffect(() => {
         if(startTime === 0) return
         timer && clearInterval(timer);
         timer = setInterval(timerAction, 500);
