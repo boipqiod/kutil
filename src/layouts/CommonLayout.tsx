@@ -10,13 +10,11 @@ export const CommonLayout = (props:CommonLayoutProps) => {
     return (
         <Stack
             w={"100vw"}
-            h={"100vh"}
             p={0}
             m={0}
         >
             <Box
                 maxW={props.maxW || "800px"}
-                h={"100vh"}
                 w={"100vw"}
                 bg={"white"}
                 m={"auto"}

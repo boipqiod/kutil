@@ -18,6 +18,12 @@ export const pagesListL: pageInfo[] = [
         type: pageType.util,
     },
     {
+        title: "PngToJpg",
+        description: "PNG 파일을 JPG 파일로 변환",
+        path: "/util/png-to-jpg",
+        type: pageType.util,
+    },
+    {
         title: "FocusManager",
         description: "집중 시간 관리 서비스",
         path: "/tool/focus-manager",
