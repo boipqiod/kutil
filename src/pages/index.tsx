@@ -73,7 +73,7 @@ export const Home = () => {
                 </Heading>
             </Stack>
             <Stack
-                mt={"150px"}
+                mt={"50px"}
             >
                 {
                     Object.values(pageType).map((type, index) => {

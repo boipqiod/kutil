@@ -24,7 +24,6 @@ export const PngToJpg = () => {
         acceptedFiles.forEach((file) => {
             setFileName(prevState => prevState + file.name + ", ");
         })
-
     };
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({
@@ -40,6 +39,7 @@ export const PngToJpg = () => {
         setResultImages([]);
         setResultJpgFiles([]);
     }
+
     const dataURLtoBlob = (dataUrl: string): Blob => {
         const byteString = atob(dataUrl.split(',')[1]);
         const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
